@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bento Flex</title>
+<style>
+  :root {
+    --bg: #14141c;
+    --box-bg: #ffffff;
+    --box-border: #0a0a0a;
+    --gap: 10px;
+  }
+  * { box-sizing: border-box; min-height: 0; min-width: 0; }
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: var(--bg);
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    min-height: 100%;
+  }
+  .box {
+    background: var(--box-bg);
+    border: 3px solid var(--box-border);
+    border-radius: 14px;
+  }
+
+  .bento {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 2053 / 1497;
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap);
+  }
+
+  /* левая + средняя часть (3 из 4 колонок) */
+  .left-middle {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+  .top-part {
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap);
+  }
+  .bottom-part {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap);
+  }
+
+  /* колонка "a + e" */
+  .col-a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+  .box.a { flex: 2; }
+  .box.e { flex: 1; }
+
+  /* колонка "b/c + f" */
+  .col-bcf {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+  .row-bc {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap);
+  }
+  .box.b, .box.c { flex: 1; }
+  .box.f { flex: 2; }
+
+  /* нижняя строка: h (широкий) + i */
+  .box.h { flex: 2; }
+  .box.i { flex: 1; }
+
+  /* правая колонка: d сверху, g снизу */
+  .right-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+  .box.d { flex: 2; }
+  .box.g { flex: 2; }
+
+  @media (max-width: 640px) {
+    .bento { flex-direction: column; aspect-ratio: auto; }
+    .left-middle, .right-col { flex: none; }
+    .top-part, .bottom-part { flex-wrap: wrap; }
+    .box { min-height: 90px; }
+  }
+</style>
+</head>
+<body>
+  <div class="bento">
+    <div class="left-middle">
+      <div class="top-part">
+        <div class="col-a">
+          <div class="box a"></div>
+          <div class="box e"></div>
+        </div>
+        <div class="col-bcf">
+          <div class="row-bc">
+            <div class="box b"></div>
+            <div class="box c"></div>
+          </div>
+          <div class="box f"></div>
+        </div>
+      </div>
+      <div class="bottom-part">
+        <div class="box h"></div>
+        <div class="box i"></div>
+      </div>
+    </div>
+    <div class="right-col">
+      <div class="box d"></div>
+      <div class="box g"></div>
+    </div>
+  </div>
+</body>
+</html>
